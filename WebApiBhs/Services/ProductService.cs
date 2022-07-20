@@ -8,6 +8,13 @@ using WebApiBhs.Domain;
 
 namespace WebApiBhs.Services
 {
+    public interface IProductService
+    {
+        Task<bool> AdicionarProduto(Produto produto);
+        Task<List<Produto>> ListarProdutos();
+        Task<bool> ExcluirProduto(int id);
+        Task<bool> EditarProduto(int id, Produto produtoNovo);
+    }
     public class ProductService : IProductService
     {
         private readonly Contexto _context;
@@ -83,12 +90,4 @@ namespace WebApiBhs.Services
         }
     }
 
-    public interface IProductService
-    {
-        Task<bool> AdicionarProduto(Produto produto);
-        Task<List<Produto>> ListarProdutos();
-        Task<bool> ExcluirProduto(int id);
-        Task<bool> EditarProduto(int id, Produto produtoNovo);
-
-    }
 }
