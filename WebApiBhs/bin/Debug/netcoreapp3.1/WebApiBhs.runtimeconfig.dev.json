@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\gabil\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\gabil\\.nuget\\packages"
+    ]
+  }
+}
