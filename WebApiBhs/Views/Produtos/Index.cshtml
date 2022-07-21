@@ -1,39 +1,35 @@
-﻿@model IEnumerable<WebApiBhs.Domain.Produto>
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Listando Produtos</title>
+</head>
+<body>
+    <h1>Listando dados de Produto com Jquery e Ajax</h1>
+    <div id="listagem"></div>
+</body>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
 
-<h1>Listando Produtos</h1>
+    var div = document.getElementById("listagem");
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.status)
-            </td>
-          
-        </tr>
-}
-    </tbody>
-</table>
+    $(document).ready(function (){
+        $.ajax({
+            url: "https://localhost:44376/Produtos/Listar",
+            type: "GET"
+            })
+            .done(function(data) {        
+               
+              data.forEach(element => {
+                div.innerHTML += `<p>Id: ${element.id} Nome: ${element.nome} Status: ${element.status}`;
+              });
+              
+            });
+})
 
-<script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
+</script>
+</html>

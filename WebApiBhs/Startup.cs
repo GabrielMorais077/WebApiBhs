@@ -30,6 +30,7 @@ namespace WebApiBhs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddDbContext<Contexto>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ApplicationContext"),
               builder => builder.MigrationsAssembly("WebApiBhs")));
@@ -51,7 +52,8 @@ namespace WebApiBhs
             app.UseHttpsRedirection();
 
             app.UseRouting();
-           
+
+            app.UseCors(option => option.AllowAnyOrigin());
 
             app.UseAuthorization();
 
